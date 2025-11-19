@@ -13,6 +13,9 @@ typedef enum {
   NODE_BLOCKQUOTE,
   NODE_CODEBLOCK_DELIM,
   NODE_CODEBLOCK,
+  NODE_LIST_ITEM,
+  NODE_LIST_START,
+  NODE_LIST_END,
   NODE_EMPTY
 } NodeType;
 
@@ -23,6 +26,7 @@ typedef struct ASTNode {
 } ASTNode;
 
 ASTNode *ast_create(NodeType type, const char *text);
+ASTNode *ast_create_int(NodeType type, int value);
 void ast_append(ASTNode **head, ASTNode *node);
 void ast_print(const ASTNode *head);
 void ast_free(ASTNode *head);

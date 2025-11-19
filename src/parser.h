@@ -8,6 +8,7 @@
 
 typedef struct {
   bool in_code_block;
+  int list_level;
 } ParserState;
 
 void parser_state_init(ParserState *state);

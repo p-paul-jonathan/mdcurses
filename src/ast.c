@@ -14,6 +14,13 @@ ASTNode *ast_create(NodeType type, const char *text) {
   return node;
 }
 
+ASTNode *ast_create_int(NodeType type, int value) {
+  char buffer[32];
+  snprintf(buffer, sizeof(buffer), "%d", value);
+
+  return ast_create(type, buffer);
+}
+
 void ast_append(ASTNode **head, ASTNode *node) {
   if (*head == NULL) {
     *head = node;
@@ -42,13 +49,13 @@ void ast_print(const ASTNode *head) {
       printf("NODE_H3 %s\n", head->text);
       break;
     case NODE_H4:
-      printf("NODE_H3 %s\n", head->text);
+      printf("NODE_H4 %s\n", head->text);
       break;
     case NODE_H5:
-      printf("NODE_H3 %s\n", head->text);
+      printf("NODE_H5 %s\n", head->text);
       break;
     case NODE_H6:
-      printf("NODE_H3 %s\n", head->text);
+      printf("NODE_H6 %s\n", head->text);
       break;
     case NODE_PARAGRAPH:
       printf("PARAGRAPH %s\n", head->text);
@@ -61,6 +68,15 @@ void ast_print(const ASTNode *head) {
       break;
     case NODE_CODEBLOCK:
       printf("CODEBLOCK %s\n", head->text);
+      break;
+    case NODE_LIST_ITEM:
+      printf("LIST_ITEM %s\n", head->text);
+      break;
+    case NODE_LIST_START:
+      printf("LIST_START %s\n", head->text);
+      break;
+    case NODE_LIST_END:
+      printf("LIST_END %s\n", head->text);
       break;
     case NODE_EMPTY:
       printf("EMPTY\n");
